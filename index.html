@@ -635,8 +635,37 @@
     border: 1px solid var(--border);
   }
 
-  /* ADD PROJECT CARD */
-  .project-add {
+  .project-link-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: rgba(0,212,255,0.06);
+    border: 1px solid rgba(0,212,255,0.2);
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.3s;
+  }
+
+  .project-link-btn:hover {
+    background: rgba(0,212,255,0.14);
+    border-color: var(--accent);
+    transform: none;
+  }
+
+  .project-link-arrow {
+    transition: transform 0.3s;
+  }
+
+  .project-link-btn:hover .project-link-arrow {
+    transform: translateX(4px);
+  }
     border: 2px dashed rgba(0,212,255,0.2);
     background: transparent;
     display: flex;
@@ -1323,14 +1352,19 @@
           <span class="project-tag">Bash</span>
           <span class="project-tag">Zabbix</span>
         </div>
+        <a href="projeto-template.html" class="project-link-btn">
+          <span>Ver Projeto</span>
+          <span class="project-link-arrow">→</span>
+        </a>
       </div>
     </div>
 
-    <!-- Adicionar Projeto -->
+    <!-- Adicionar Projeto 
     <div class="project-card project-add" onclick="openAddProject()">
       <div class="add-icon">+</div>
       <span class="add-text">Adicionar Projeto</span>
     </div>
+    -->
 
   </div>
 </section>
@@ -1399,10 +1433,10 @@
       <div class="contact-label">Telefone</div>
       <div class="contact-value">(51) 99981-9186</div>
     </a>
-    <a href="mailto:elias_dos_reis@hotmail.com" class="contact-card">
+    <a href="/cdn-cgi/l/email-protection#caafa6a3abb995aea5b995b8afa3b98aa2a5bea7aba3a6e4a9a5a7" class="contact-card">
       <span class="contact-icon">✉️</span>
       <div class="contact-label">E-mail</div>
-      <div class="contact-value">elias_dos_reis@hotmail.com</div>
+      <div class="contact-value"><span class="__cf_email__" data-cfemail="3e5b52575f4d615a514d614c5b574d7e56514a535f5752105d5153">[email&#160;protected]</span></div>
     </a>
     <a href="https://linkedin.com/in/eliasdosreislima" target="_blank" class="contact-card">
       <span class="contact-icon">🔗</span>
@@ -1455,7 +1489,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   let projectCount = 2;
 
   function openAddProject() {
@@ -1483,6 +1517,7 @@
     projectCount++;
 
     const tagsHTML = tags.map(t => `<span class="project-tag">${t}</span>`).join('');
+    const pageFile = `projeto-${num}.html`;
 
     const card = document.createElement('div');
     card.className = 'project-card';
@@ -1495,6 +1530,10 @@
         <h3 class="project-name">${name}</h3>
         <p class="project-desc">${desc}</p>
         <div class="project-tags">${tagsHTML}</div>
+        <a href="${pageFile}" class="project-link-btn">
+          <span>Ver Projeto</span>
+          <span class="project-link-arrow">→</span>
+        </a>
       </div>`;
 
     const grid = document.getElementById('projectsGrid');
@@ -1547,12 +1586,3 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.tech-category, .info-card, .cert-card, .contact-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s, transform 0.5s';
-    observer.observe(el);
-  });
-</script>
-</body>
-</html>

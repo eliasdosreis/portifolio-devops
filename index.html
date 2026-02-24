@@ -347,24 +347,7 @@
 <div class="divider"></div>
 
 <!-- VIDEO -->
-<section id="video">
-  <div class="section-header">
-    <span class="section-tag">// 05. apresentação</span>
-    <h2 class="section-title">Vídeo de Apresentação</h2>
-    <span class="section-line"></span>
-  </div>
-  <div class="video-wrapper">
-    <div class="video-placeholder" id="videoPlaceholder">
-      <div class="play-btn" onclick="document.getElementById('videoInput').focus()">▶</div>
-      <span class="video-label">Cole o link do seu vídeo abaixo</span>
-    </div>
-    <div class="video-embed-container" id="videoEmbed"></div>
-    <div class="video-url-input">
-      <input type="text" id="videoInput" placeholder="Cole a URL do YouTube ou Vimeo aqui..." />
-      <button onclick="loadVideo()">Carregar</button>
-    </div>
-  </div>
-</section>
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe src="https://www.youtube.com/embed/TtXRY3aik38?rel=0" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe></div>
 
 <div class="divider"></div>
 
@@ -560,5 +543,6 @@
       }
     });
   }, { threshold: 0.1 });
+
 
 

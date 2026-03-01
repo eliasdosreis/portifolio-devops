@@ -118,87 +118,34 @@
     <!------------------------------------------ BLOCO 1 -------------------------------------->
     <div class="code-block" style="margin-bottom:24px;">
       <div class="code-header">
-        <span class="code-lang">docker-compose.yml</span>
+        <span class="code-lang">????????????????????</span>
         <div style="display:flex;align-items:center;gap:16px;">
           <div class="code-dots"><span></span><span></span><span></span></div>
           <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
         </div>
       </div>
       <div class="code-body">
-        <pre><span class="cm"># docker-compose.yml — Stack de laboratório</span>
+        <pre><span class="cm">#         <span class="code-lang">????????????????????</span></span>
 <span class="kw">version</span>: <span class="str">'3.9'</span>
 
-<span class="kw">services</span>:
-  <span class="fn">nginx</span>:
-    <span class="kw">image</span>: nginx:alpine
-    <span class="kw">ports</span>:
-      - <span class="str">"80:80"</span>
-    <span class="kw">volumes</span>:
+<span class="kw">Não Completo</span>:
+  <span class="fn">Não Completo</span>:
+    <span class="kw">Não Completo</span>: nginx:alpine
+    <span class="kw">Não Completo</span>:
+      - <span class="str">"Não Completo"</span>
+    <span class="kw">Não Completo</span>:
       - ./conf/nginx.conf:/etc/nginx/nginx.conf
 
-  <span class="fn">zabbix-agent</span>:
-    <span class="kw">image</span>: zabbix/zabbix-agent2:latest
-    <span class="kw">environment</span>:
-      - ZBX_SERVER_HOST=<span class="str">zabbix-server</span>
-      - ZBX_HOSTNAME=<span class="str">lab-docker</span>
-    <span class="kw">network_mode</span>: host</pre>
+  <span class="fn">Não Completo</span>:
+    <span class="kw">Não Completo</span>:Não Completo
+    <span class="kw">Não Completo</span>:
+      - ZBX_SERVER_HOST=<span class="str">Não Completo</span>
+      - ZBX_HOSTNAME=<span class="str">Não Completo</span>
+    <span class="kw">Não Completo</span>: host</pre>
       </div>
     </div>
 
-    <!-------------------------------------------------- BLOCO 2 --------------------------------------------------->
-    <div class="code-block" style="margin-bottom:24px;">
-      <div class="code-header">
-        <span class="code-lang">Ansible Playbook</span>
-        <div style="display:flex;align-items:center;gap:16px;">
-          <div class="code-dots"><span></span><span></span><span></span></div>
-          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-        </div>
-      </div>
-      <div class="code-body">
-        <pre><span class="cm"># deploy.yml — Provisionamento automatizado</span>
-<span class="kw">- hosts</span>: <span class="str">all</span>
-  <span class="kw">become</span>: yes
-  <span class="kw">tasks</span>:
-
-    - <span class="kw">name</span>: <span class="str">Instalar Docker</span>
-      <span class="fn">apt</span>:
-        <span class="kw">name</span>: docker.io
-        <span class="kw">state</span>: present
-
-    - <span class="kw">name</span>: <span class="str">Subir stack com Docker Compose</span>
-      <span class="fn">community.docker.docker_compose</span>:
-        <span class="kw">project_src</span>: /opt/lab
-        <span class="kw">state</span>: present
-        <span class="kw">pull</span>: yes</pre>
-      </div>
-    </div>
-
-  <!-------------------------------------------------- BLOCO 3 --------------------------------------------------->
-    <div class="code-block">
-      <div class="code-header">
-        <span class="code-lang">Bash — Deploy Script</span>
-        <div style="display:flex;align-items:center;gap:16px;">
-          <div class="code-dots"><span></span><span></span><span></span></div>
-          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-        </div>
-      </div>
-      <div class="code-body">
-        <pre><span class="cm">#!/bin/bash</span>
-<span class="cm"># deploy.sh — Zero-downtime deploy</span>
-
-<span class="kw">set</span> -e
-
-<span class="fn">echo</span> <span class="str">"[INFO] Atualizando stack..."</span>
-
-docker compose pull
-docker compose up -d --remove-orphans
-
-<span class="fn">echo</span> <span class="str">"[OK] Stack atualizada com sucesso!"</span>
-docker compose ps</pre>
-      </div>
-    </div>
-  </div>
-
+    
   <!-- PASSOS / COMO FOI FEITO -->
   <div class="proj-section">
     <span class="proj-section-tag">// 04. processo</span>
@@ -211,29 +158,7 @@ docker compose ps</pre>
           <h4>Planejamento da Stack</h4>
           <p>Defini os serviços necessários para o laboratório: proxy reverso com Nginx, monitoramento com Zabbix Agent e automação de deploy via Ansible. Objetivo: ambiente reproduzível em qualquer VPS Linux.</p>
         </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num"><span class="step-num-inner">02</span></div>
-        <div class="step-content">
-          <h4>Criação do Docker Compose</h4>
-          <p>Estruturei o <code style="color:var(--accent);font-family:'JetBrains Mono',monospace;">docker-compose.yml</code> com redes isoladas, volumes persistentes e variáveis de ambiente. Testado localmente antes do deploy em produção.</p>
-        </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num"><span class="step-num-inner">03</span></div>
-        <div class="step-content">
-          <h4>Automação com Ansible</h4>
-          <p>Escrevi playbooks para instalação do Docker, cópia de configs e execução do Compose. Qualquer servidor novo entra no ar em menos de 5 minutos com um único comando.</p>
-        </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num"><span class="step-num-inner">04</span></div>
-        <div class="step-content">
-          <h4>Testes & Documentação</h4>
-          <p>Validei o ambiente com checagens de health, testei falhas e documentei o processo no README. Vídeo gravado mostrando o deploy do zero ao funcionando.</p>
-        </div>
-      </div>
-    </div>
+      </div>  
   </div>
 
   <!-- RESULTADOS & APRENDIZADOS -->
@@ -263,24 +188,10 @@ docker compose ps</pre>
     <div class="learnings-list">
       <div class="learning-item">
         <span class="learning-icon">◆</span>
-        <span>Aprofundei o uso de <strong>redes Docker</strong> para isolar serviços e controlar tráfego interno entre containers sem expor 
-          
-          
+        <span>Aprofundei o uso de <strong>redes Docker</strong> para isolar serviços e controlar tráfego interno entre containers sem expor  
           as desnecessárias.</span>
       </div>
-      <div class="learning-item">
-        <span class="learning-icon">◆</span>
-        <span>Entendi na prática a diferença entre idempotência e execução simples em Ansible — playbooks bem escritos podem rodar múltiplas vezes sem efeitos colaterais.</span>
-      </div>
-      <div class="learning-item">
-        <span class="learning-icon">◆</span>
-        <span>Configurei o <strong>Zabbix Agent 2</strong> via Docker com integração ao servidor externo, aprendendo sobre passive checks e auto-registro de hosts.</span>
-      </div>
-      <div class="learning-item">
-        <span class="learning-icon">◆</span>
-        <span>Produzi documentação técnica e vídeo de demonstração — habilidade importante para apresentar projetos em entrevistas e times de trabalho.</span>
-      </div>
-    </div>
+   
   </div>
 
   <!-- NAV ENTRE PROJETOS -->
@@ -390,4 +301,5 @@ docker compose ps</pre>
 </body>
 
 </html>
+
 
